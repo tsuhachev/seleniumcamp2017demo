@@ -1,0 +1,11 @@
+.center {
+    width: 350px;
+    margin: 0 auto;
+    margin-top: 220px;
+    font-size: 28px;
+    text-align: center;
+}
+
+#currenciesSelect {
+    font-size: 24px;
+}

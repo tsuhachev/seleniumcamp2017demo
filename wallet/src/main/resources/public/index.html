@@ -1,0 +1,21 @@
+<!doctype html>
+<html ng-app="demo">
+<head>
+    <title>Hello AngularJS</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+    <script src="main.js"></script>
+    <link href="main.css" rel="stylesheet" type="text/css"/>
+</head>
+
+<body>
+<div ng-controller="Hello" class="center">
+    <h1>My Wallet</h1>
+    <select id="currenciesSelect" ng-model="selectedCurrency" ng-change="getBalance(selectedCurrency)"
+            ng-options="item for item in currencies">
+        <option value="">Select Currency</option>
+    </select>
+    <p>{{balance.balance}} {{balance.currency}}</p>
+
+</div>
+</body>
+</html>
