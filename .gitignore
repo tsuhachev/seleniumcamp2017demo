@@ -1,0 +1,12 @@
+.settings/
+.classpath
+.project
+target/
+*.iml
+.idea/
+
+.eclipse-pmd
+.checkstyle
+currency/
+pom.xml
+wallet/
