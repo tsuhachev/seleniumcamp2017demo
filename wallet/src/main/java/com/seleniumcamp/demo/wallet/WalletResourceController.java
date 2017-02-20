@@ -35,6 +35,7 @@ public class WalletResourceController implements WalletResource {
         this.currencyServiceRateEndpoint = currencyServiceRateEndpoint;
     }
 
+    @Override
     public ResponseEntity<BalanceDTO> balance(String targetCurrencyCode) {
         UriComponentsBuilder builder = UriComponentsBuilder
             .fromUriString(currencyServiceRateEndpoint)
@@ -55,6 +56,7 @@ public class WalletResourceController implements WalletResource {
         return new ResponseEntity<>(balanceDTO, HttpStatus.OK);
     }
 
+    @Override
     public List<Currency> currencies() {
         final ArrayList<Currency> currencies = new ArrayList<>();
         Arrays.asList(Locale.GERMANY, Locale.US, Locale.UK)

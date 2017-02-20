@@ -15,6 +15,7 @@ public class CurrencyController implements CurrencyRateResourse {
     public static final double USD_TO_GBP = 0.81;
     public static final double USD_TO_EUR = 0.942065;
 
+    @Override
     public RateDTO rate(String sourceCurrencyCode, String targetCurrencyCode) {
         double rate;
         Currency.getInstance(sourceCurrencyCode);

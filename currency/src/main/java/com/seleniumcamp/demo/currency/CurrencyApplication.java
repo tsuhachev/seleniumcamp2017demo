@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * This class is a CurrencyRate application
  */
 @SpringBootApplication
-public class Application {
+public class CurrencyApplication {
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(CurrencyApplication.class, args);
     }
 }

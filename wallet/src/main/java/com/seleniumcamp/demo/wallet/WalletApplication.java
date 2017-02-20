@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
  * This class is a Wallet application
  */
 @SpringBootApplication
-public class Application {
+public class WalletApplication {
 
     @Bean
     public RestTemplate restTemplate() {
@@ -22,6 +22,6 @@ public class Application {
     }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(WalletApplication.class, args);
     }
 }
