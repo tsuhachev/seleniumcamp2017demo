@@ -13,13 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.aResponse;
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo;
-import static com.github.tomakehurst.wiremock.client.WireMock.get;
 import static com.github.tomakehurst.wiremock.client.WireMock.getRequestedFor;
-import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathEqualTo;
-import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 import static com.github.tomakehurst.wiremock.client.WireMock.verify;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.empty;
@@ -37,7 +33,6 @@ import static org.junit.Assert.assertThat;
 public class WalletResourceControllerIT {
 
     public static final String USD = "USD";
-    public static final String RATE_PATH = "/rate";
     public static final Double RATE_VALUE = 0.81;
     public static final String EUR = "EUR";
 
@@ -49,13 +44,13 @@ public class WalletResourceControllerIT {
 
     @Test
     public void testGetBalanceCurrencyRateIsValid() throws Exception {
-        stubForRateEndpoint(HttpStatus.SC_OK);
+        WalletTestUtils.stubForRateEndpoint(HttpStatus.SC_OK, RATE_VALUE);
 
         Response response = given().port(port)
             .queryParam(RateDTO.TARGET_CURRENCY_CODE, EUR)
             .get(WalletResource.BALANCE_RESOURCE_PATH);
 
-        verify(getRequestedFor(urlPathEqualTo(RATE_PATH))
+        verify(getRequestedFor(urlPathEqualTo(WalletTestUtils.RATE_PATH))
             .withQueryParam(RateDTO.SOURCE_CURRENCY_CODE, equalTo(USD))
             .withQueryParam(RateDTO.TARGET_CURRENCY_CODE, equalTo(EUR)));
 
@@ -72,7 +67,8 @@ public class WalletResourceControllerIT {
 
     @Test
     public void testGetBalanceRateEndpointThrowsError() throws Exception {
-        stubForRateEndpoint(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+        WalletTestUtils.stubForRateEndpoint(HttpStatus.SC_INTERNAL_SERVER_ERROR,
+            RATE_VALUE);
 
         Response response = given().port(port)
             .queryParam(RateDTO.TARGET_CURRENCY_CODE, EUR)
@@ -91,14 +87,4 @@ public class WalletResourceControllerIT {
         assertThat(Arrays.asList(currencies), is(not(empty())));
     }
 
-    private void stubForRateEndpoint(int responseStatusCode) {
-        stubFor(
-            get(urlPathMatching(RATE_PATH))
-                .withQueryParam(RateDTO.SOURCE_CURRENCY_CODE, equalTo(USD))
-                .withQueryParam(RateDTO.TARGET_CURRENCY_CODE, equalTo(EUR))
-                .willReturn(aResponse()
-                    .withHeader("Content-type", "application/json")
-                    .withStatus(responseStatusCode)
-                    .withBody("{\"rate\":" + RATE_VALUE + "}")));
-    }
 }
