@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.Currency;
 
 import static org.hamcrest.Matchers.empty;
@@ -18,7 +19,6 @@ import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -41,11 +41,10 @@ public class WalletResourceControllerTest {
 
     @Test
     public void testBalance() throws Exception {
-        com.seleniumcamp.demo.wallet.RateDTO rateDTO = new com.seleniumcamp.demo.wallet.RateDTO();
+        RateDTO rateDTO = new RateDTO();
         rateDTO.setRate(0.94);
         when(restTemplate
-            .exchange(anyString(), eq(HttpMethod.GET), any(), eq(
-                com.seleniumcamp.demo.wallet.RateDTO.class)))
+            .exchange(any(URI.class), eq(HttpMethod.GET), any(), eq(RateDTO.class)))
             .thenReturn(new ResponseEntity<>(rateDTO, HttpStatus.OK));
 
         BalanceDTO balanceDTO = walletResourceController.balance(EUR).getBody();
