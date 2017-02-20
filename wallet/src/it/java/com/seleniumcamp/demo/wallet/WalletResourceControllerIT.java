@@ -41,16 +41,16 @@ public class WalletResourceControllerIT {
     public static final Double RATE_VALUE = 0.81;
 
     @Rule
-    public WireMockRule wireMockRule = new WireMockRule(8091);
+        public WireMockRule wireMockRule = new WireMockRule(8091);
 
-    @Value("${local.server.port}")
-    private int port;
+        @Value("${local.server.port}")
+        private int port;
 
-    public static final String EUR = "EUR";
+        public static final String EUR = "EUR";
 
-    @Test
-    public void testGetBalanceCurrencyRateIsValid() throws Exception {
-        stubForRateEndpoint(HttpStatus.SC_OK);
+        @Test
+        public void testGetBalanceCurrencyRateIsValid() throws Exception {
+            stubForRateEndpoint(HttpStatus.SC_OK);
 
         Response response = given().port(port)
             .queryParam(RateDTO.TARGET_CURRENCY_CODE, EUR)
