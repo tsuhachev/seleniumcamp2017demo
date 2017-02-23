@@ -8,7 +8,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.stubFor;
 import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 
 /**
- * This class ...
+ * This class wallet test helper
  */
 public class WalletTestUtils {
 

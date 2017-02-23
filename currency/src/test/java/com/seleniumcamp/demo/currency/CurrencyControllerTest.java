@@ -22,7 +22,7 @@ public class CurrencyControllerTest {
     }
 
     @Test
-    public void testRateSameCurrencies() throws Exception {
+    public void testRateUsdToUsd() throws Exception {
         RateDTO rate = currencyController.rate(USD, USD);
         assertNotNull(rate);
         assertEquals(Double.valueOf(1), rate.getRate());

@@ -40,7 +40,7 @@ public class WalletResourceControllerTest {
     }
 
     @Test
-    public void testBalance() throws Exception {
+    public void testBalanceRateIsPositive() throws Exception {
         RateDTO rateDTO = new RateDTO();
         rateDTO.setRate(0.94);
         when(restTemplate
@@ -50,6 +50,20 @@ public class WalletResourceControllerTest {
         BalanceDTO balanceDTO = walletResourceController.balance(EUR).getBody();
 
         assertEquals(Double.valueOf(94), balanceDTO.getBalance());
+        assertEquals(Currency.getInstance(EUR), balanceDTO.getCurrency());
+    }
+
+    @Test
+    public void testBalanceRateIsZero() throws Exception {
+        RateDTO rateDTO = new RateDTO();
+        rateDTO.setRate(0.0);
+        when(restTemplate
+            .exchange(any(URI.class), eq(HttpMethod.GET), any(), eq(RateDTO.class)))
+            .thenReturn(new ResponseEntity<>(rateDTO, HttpStatus.OK));
+
+        BalanceDTO balanceDTO = walletResourceController.balance(EUR).getBody();
+
+        assertEquals(Double.valueOf(0), balanceDTO.getBalance());
         assertEquals(Currency.getInstance(EUR), balanceDTO.getCurrency());
     }
 
