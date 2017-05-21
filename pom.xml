@@ -117,6 +117,25 @@
 		</pluginManagement>
 		<plugins>
 			<plugin>
+				<groupId>com.github.klieber</groupId>
+				<artifactId>phantomjs-maven-plugin</artifactId>
+				<version>0.7</version>
+				<executions>
+					<execution>
+						<id>install-phantomjs</id>
+						<goals>
+							<goal>install</goal>
+						</goals>
+						<phase>integration-test</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<propertyName>phantomjs.binary.path</propertyName>
+					<version>2.1.1</version>
+					<checkSystemPath>false</checkSystemPath>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>build-helper-maven-plugin</artifactId>
 				<version>1.9.1</version>
@@ -169,6 +188,9 @@
 					<includes>
 						<include>**/*IT.java</include>
 					</includes>
+					<systemPropertyVariables>
+						<phantomjs.binary.path>${phantomjs.binary.path}</phantomjs.binary.path>
+					</systemPropertyVariables>
 				</configuration>
 				<executions>
 					<execution>

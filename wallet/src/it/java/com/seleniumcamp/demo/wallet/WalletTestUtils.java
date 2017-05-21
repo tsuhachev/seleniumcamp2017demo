@@ -10,11 +10,11 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching;
 /**
  * This class wallet test helper
  */
-public class WalletTestUtils {
+class WalletTestUtils {
 
-    public static final String RATE_PATH = "/rate";
+    static final String RATE_PATH = "/rate";
 
-    public static void stubForRateEndpoint(int responseStatusCode, Double rateValue) {
+    static void stubForRateEndpoint(int responseStatusCode, Double rateValue) {
         stubFor(
             get(urlPathMatching(RATE_PATH))
                 .withQueryParam(RateDTO.SOURCE_CURRENCY_CODE, WireMock.matching(".*"))

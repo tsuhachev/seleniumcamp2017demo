@@ -25,8 +25,8 @@ import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 @ActiveProfiles("test")
 public class WalletUserInterfaceIT {
 
-    public static final double RATE_VALUE = 0.94;
-    public static final String EUR = "EUR";
+    private static final double RATE_VALUE = 0.94;
+    private static final String EUR = "EUR";
     @Rule
     public WireMockRule wireMockRule = new WireMockRule(8091);
 
@@ -46,6 +46,11 @@ public class WalletUserInterfaceIT {
         $("#currenciesSelect").selectOptionContainingText(EUR);
         String myBalance = $("#myBalance").getText();
         assertEquals("94 EUR", myBalance);
+    }
+
+    @Test
+    public void name() throws Exception {
+        Selenide.open("http://google.com");
     }
 
     private String getSiteUrl() {
