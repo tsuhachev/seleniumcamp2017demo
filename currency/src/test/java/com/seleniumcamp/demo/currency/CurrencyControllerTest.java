@@ -10,8 +10,8 @@ import static org.junit.Assert.assertNotNull;
  */
 public class CurrencyControllerTest {
 
-    public static final String USD = "USD";
-    public static final String EUR = "EUR";
+    private static final String USD = "USD";
+    private static final String EUR = "EUR";
     private CurrencyController currencyController = new CurrencyController();
 
     @Test

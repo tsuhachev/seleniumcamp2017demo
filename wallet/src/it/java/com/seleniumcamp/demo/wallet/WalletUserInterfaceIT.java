@@ -17,9 +17,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.junit.Assert.assertEquals;
 import static org.springframework.web.util.UriComponentsBuilder.fromHttpUrl;
 
-/**
- * This class ...
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
@@ -46,11 +43,6 @@ public class WalletUserInterfaceIT {
         $("#currenciesSelect").selectOptionContainingText(EUR);
         String myBalance = $("#myBalance").getText();
         assertEquals("94 EUR", myBalance);
-    }
-
-    @Test
-    public void name() throws Exception {
-        Selenide.open("http://google.com");
     }
 
     private String getSiteUrl() {
