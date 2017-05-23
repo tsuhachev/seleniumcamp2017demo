@@ -5,15 +5,15 @@ import org.springframework.stereotype.Controller;
 import java.util.Currency;
 
 /**
- * This class is a implementation of CurrencyRateResourse Rest API
+ * This class is a implementation of CurrencyRateResource Rest API
  */
 @Controller
 public class CurrencyController implements CurrencyRateResourse {
 
     private static final String EUR = "EUR";
     private static final String USD = "USD";
-    public static final double USD_TO_GBP = 0.81;
-    public static final double USD_TO_EUR = 0.942065;
+    private static final double USD_TO_GBP = 0.81;
+    private static final double USD_TO_EUR = 0.942065;
 
     @Override
     public RateDTO rate(String sourceCurrencyCode, String targetCurrencyCode) {

@@ -12,10 +12,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Currency;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
 
 /**
  * This class is a implementation of WalletResource Rest API
@@ -59,8 +59,8 @@ public class WalletResourceController implements WalletResource {
     @Override
     public List<Currency> currencies() {
         final ArrayList<Currency> currencies = new ArrayList<>();
-        Arrays.asList(Locale.GERMANY, Locale.US, Locale.UK)
-            .stream().forEach(l -> currencies.add(Currency.getInstance(l)));
+        Stream.of(Locale.GERMANY, Locale.US, Locale.UK)
+            .forEach(l -> currencies.add(Currency.getInstance(l)));
         return currencies;
     }
 

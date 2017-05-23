@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 @ActiveProfiles("test")
 public class CurrencyControllerIT {
 
-    public static final String USD = "USD";
+    private static final String USD = "USD";
 
     @Value("${local.server.port}")
     private int port;

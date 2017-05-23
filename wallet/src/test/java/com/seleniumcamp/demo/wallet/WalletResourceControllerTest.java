@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class WalletResourceControllerTest {
 
-    public static final String EUR = "EUR";
+    private static final String EUR = "EUR";
     private WalletResourceController walletResourceController;
 
     @Mock

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * This class is a CurrencyRateResourse Rest API
+ * This class is a CurrencyRateResource Rest API
  */
 public interface CurrencyRateResourse {
 
